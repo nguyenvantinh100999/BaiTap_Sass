@@ -1,0 +1,674 @@
+@import './base/base.scss';
+@import './variable/varialble.scss';
+.header{
+    position: absolute;
+    width: 100%;
+    z-index: 99;
+    top: 0;
+    @media screen and (max-width:1199px) {
+        // position: fixed;
+        background-color: transparent !important;
+        .container{
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            .logo{
+                // position: fixed;
+                overflow: hidden;
+                width: 100vw !important;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                background-color: $bg-primary-100;
+                opacity: 1 !important;
+                img{
+                    height: 50px;
+                    margin-left: 50px;
+                }
+                .btn-navbar{
+                    position: relative;
+                    margin-left: 20px;
+                }
+            }
+            .nav{
+                transition: all 1s;
+                flex-direction: column;
+                justify-content: space-around !important;
+                align-items: center;
+                height: 100vh;
+                width: 40% !important;
+                background-color: rgba(255, 255, 255, 0.04);
+                backdrop-filter: blur(35px);
+                .menu{
+                    text-align: center;
+                    a{
+                        display: block;
+                        margin: 50px 0 !important;
+                    }
+                }
+                .contact{
+                    flex-direction: column;
+                    width: 100% !important;
+                    .phone{
+                        width: auto;
+                    }
+                    .social{
+                        padding: 20px 0;
+                        margin: 10px 0;
+                        a{
+                            font-size: 20px !important;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+    .container{
+        display: flex;
+        justify-content: space-between;
+        .logo{
+            width: 30%;
+            img{
+
+            }
+            .btn-navbar{
+                
+                .openBar,.closeBar{
+                    position: absolute;
+                    top: 50%;
+                    left: 5%;
+                    transform: translateY(-50%);
+                    cursor: pointer;            
+                    @include mTextHover($text-4xl,$fw-semi,$text-primary-200,$text-primary-300);
+                    
+                }
+                
+            }
+        }
+        .nav{
+            width: 70%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .menu{
+                width: 60%;
+                a{
+                    text-decoration: none;
+                    margin: 0 15px;
+                    @include mTextHover($text-small,$fw-semi,$text-primary-200,$text-primary-300);
+                    position: relative;
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        width: 10px;
+                        height: 10px;
+                        background-color: $bg-primary-300;
+                        bottom: -20px;
+                        right: 50%;
+                        border-radius: 50%;
+                        transition: all 0.5s;
+                        transform: scale(0,0);
+                    }
+                    &:hover{
+                        &::after{
+                            transform: scale(1,1);
+                            transition: all 0.5s;
+                        }
+                    }
+                }
+
+            }
+            .contact{
+                width: 40%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                .phone{
+                    @include mButton($text-base,$fw-normal,$text-primary-100,10px 20px,1px solid $bg-primary-300,50px,$bg-primary-100,$text-primary-300);
+                    a{
+                        text-decoration: none; 
+                        @include mTextHover($text-base,$fw-normal,$text-primary-100,$text-primary-300);
+                    }
+                    
+                }
+                .social{
+                    a{
+                        text-decoration: none;
+                        margin: 0 5px;
+                        @include mTextHover($text-small,$fw-normal,$text-dark,$text-primary-300);
+                    }
+                }
+            }
+        }
+    }
+}
+
+//CAROUSEL
+.carousel{
+    position: relative;
+    .container{
+        position: relative;
+        z-index: 3;
+        @extend .py-8;
+        @media screen and (max-width:992px) {
+            padding-top: 150px;
+            padding-left: 30px;
+            .row{
+                .title-right{
+                    p{
+                        font-size: $text-5xl !important;
+                        line-height: 60px;
+                    }
+                    
+                }
+            }
+        }
+        .row{
+            align-items: center;
+            .title-right{
+                h4{
+                    @include mText($text-xl,$fw-semi,$text-primary-300);
+                }
+                p{
+                    @include mText($text-6xl,$fw-700,$text-dark);
+                }
+            }
+            .img-left{
+                // overflow: hidden;
+                // width: 100%;
+            }
+        }
+
+    }
+    .bg-top{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        img{
+            width: 100%;
+            height: auto;
+        }
+        
+    }
+    .bg-bottom{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+.product{
+    position: relative;
+    .container{
+        @extend .py-4;
+        position: relative;
+        z-index: 2;
+        .product-top,.product-bottom{
+            @extend .mb-4;
+            .row{
+                .col-3{
+                    $time:1;
+                        @for $num from 1 to 5{
+                            .item-#{$num}{
+                                animation: fadeInLeft #{$time}s;
+                            }
+                            $time:$time+1;
+                        }
+                    .item{
+                        border: 1px solid transparent;
+                        border-radius: 10px;
+                        overflow: hidden;
+                        transition: all 0.3s;
+                        // animation: fadeInLeft 1s;
+                        
+                        &:hover{
+                            box-shadow: 0px 17px 38px -6px rgba(0,0,0,0.71);
+                            -webkit-box-shadow: 0px 17px 38px -6px rgba(0,0,0,0.71);
+                            -moz-box-shadow: 0px 17px 38px -6px rgba(0,0,0,0.71);
+                            transition: all 0.3s;
+                        }
+                        .picture{
+                            overflow: hidden;   
+                            img{
+                                width: 100%;
+                                height: auto;
+                                transition: all 0.5s;
+                                &:hover{
+                                    transform: scale(1.1,1.1);
+                                    transition: all 0.5s;
+                                }
+                            }
+                            
+                        }
+                        .item-contact{
+                            @extend .p-4;
+                            text-align: center;
+                            background-color: $bg-primary-100;
+                            h4{
+                                @include mText($text-small,$fw-semi,$text-primary-300);
+                            }
+                            h2{
+                                @include mText($text-2xl,$fw-bold,$text-dark);
+                            }
+                            p{
+                                @include mText()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .product-bottom{
+            .row{
+                .col-3{
+                    .item{
+                        border: 1px solid transparent;
+                        border-radius: 10px;
+                        overflow: hidden;
+                        transition: all 0.3s;
+                        &:hover{
+                            box-shadow: 0px 17px 38px -6px rgba(0,0,0,0.71);
+                            -webkit-box-shadow: 0px 17px 38px -6px rgba(0,0,0,0.71);
+                            -moz-box-shadow: 0px 17px 38px -6px rgba(0,0,0,0.71);
+                            transition: all 0.3s;
+                        }
+                        .picture{
+                            overflow: hidden;   
+                            img{
+                                width: 100%;
+                                height: auto;
+                                transition: all 0.5s;
+                                &:hover{
+                                    transform: scale(1.1,1.1);
+                                    transition: all 0.5s;
+                                }
+                            }
+                            
+                        }
+                        .item-contact{
+                            @extend .p-4;
+                            text-align: center;
+                            background-color: $bg-primary-100;
+                            h4{
+                                @include mText($text-small,$fw-semi,$text-primary-300);
+                            }
+                            h2{
+                                @include mText($text-2xl,$fw-bold,$text-dark);
+                            }
+                            p{
+                                @include mText()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    .product-bg{
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        img{
+            width: 100%;
+            height: 800px;
+            transform: rotateY(180deg);
+            transform: rotatex(180deg);
+            
+        }
+    }
+}
+
+.register{
+    position: relative;
+    .container{
+        position: relative;
+        z-index: 3;
+        @extend .py-6;
+        .row{
+            @media screen and (max-width:992px) {
+                .col-sm-12{
+                    width: 100% !important;
+                }
+                .register-left{
+                    margin-bottom: 50px;
+                    img{
+
+                    }
+                }
+                .register-right{
+                    .form{
+                        .form-info{
+                            .form-contact{
+                                .form-name{
+                                    width: 50%;
+                                }
+                                .form-email{
+                                    width: 50%;
+                                }
+                            }
+                        }
+                    }
+                } 
+            }@media screen and (max-width:780px) {
+                
+                .register-right{
+                    .form{
+                        .form-info{
+                            .form-contact{
+                                flex-direction: column;
+                                .form-name{
+                                    width: 100%;
+                                    margin-bottom: 30px;
+                                }
+                                .form-email{
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                } 
+            }
+            .register-left{
+                width: 58.333333%;
+                padding: 0 20px;
+                img{
+                    width: 100%;
+                }
+            }
+            .register-right{
+                width: 41.333333%;
+                padding: 0 20px;
+                .form{
+                    border: 1px solid transparent;
+                    border-radius: 10px;
+                    padding: 10px 30px;
+                    box-shadow: 0 0 4px 0 rgba(0,0,0,.3);
+                    height: 100%;
+                    background-color: $light;
+                    .form-info{
+                        text-align: center; 
+                        h2{
+                            @include mText($text-4xl,$fw-700,$dark);
+                            @extend .mb-8;
+                        }
+                        .form-contact{
+                            display: flex;
+                            justify-content: space-between;
+                            @extend .mb-4;
+                            
+                            .form-name{
+                                position: relative;
+                                @extend .me-2;
+                                .icon-name{
+                                    position: absolute;
+                                    left: 10px;
+                                    top: 10px;
+                                    
+                                    i{
+                                        @include mText($text-base,$fw-normal,$text-primary-300);
+                                    }
+                                }
+                                .input-name{
+                                    position: relative;
+                                    input{
+                                        outline: none;
+                                        padding: 10px 30px;
+                                        width: 100%;
+                                        background: transparent;
+                                        border: 1px solid rgba(0,0,0,0.2);
+                                        border-radius: 50px;
+                                        transition: all 0.5s;
+                                        @include mInputHover(rgba(0,0,0,0.5))
+                                    }
+                                }
+                            }
+                            .form-email{
+                                position: relative;
+                                .icon-email{
+                                    position: absolute;
+                                    left: 10px;
+                                    top: 10px;
+                                    line-height: 25px;
+                                    i{
+                                        @include mText($text-base,$fw-normal,$text-primary-300);
+                                    }
+                                }
+                                .input-email{
+                                    position: relative;
+                                    input{
+                                        outline: none;
+                                        padding: 10px 30px;
+                                        width: 100%;
+                                        background: transparent;
+                                        border: 1px solid rgba(0,0,0,0.2);
+                                        border-radius: 50px;
+                                        transition: all 0.5s;
+                                        @include mInputHover(rgba(0,0,0,0.5))
+                                    }
+                                }
+                            }
+                        }
+                        .form-select-country{
+                            position: relative;
+                            @extend .mb-4;
+                            .country{
+                                position: relative;
+                                .form-select{
+                                    @extend .px-4;
+                                    &:focus{
+                                        box-shadow: none;
+                                    }
+                                    @include mInputHover(rgba(0,0,0,0.5));
+                                }
+                            }
+                            .icon-select{
+                                position: absolute;
+                                left: 10px;
+                                top: 10px;
+                                line-height: 10px;
+                                i{
+                                    color: $text-primary-300;
+                                }
+                            }
+                        }
+                        .message{
+                            position: relative;
+                            @extend .mb-6;
+                            .icon-message{
+                                position: absolute;
+                                top:10px;
+                                left: 10px;
+                                z-index: 1;
+                                i{
+                                    color: $text-primary-300;
+                                }
+                            }
+                            .text-area{
+                                position: relative;
+                                textarea{
+                                    
+                                    &:focus{
+                                        box-shadow: none;
+                                    }
+                                    @include mInputHover(rgba(0,0,0,0.5));
+                                }
+                            }
+                        }
+                        .btn-send{
+                            text-align: left;
+                            .send{
+                                span{
+                                }
+                                @include mButton($text-base,$fw-semi,$text-primary-100,10px 50px,1px solid $bg-primary-300,50px,$bg-primary-100,$text-primary-300)
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .bg-register{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        img{
+            width: 100%;
+        }
+    }
+}
+.footer{
+    background: url(../img/footer_background.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 50px 0;
+    .container{
+        padding: 50px 0;
+        .row{
+            @extend .py-8;
+            @media screen and (max-width:992px) {
+                .col-sm-6{
+                    margin-bottom: 50px;
+                }
+            }
+            .col-3{
+                padding: 0 40px;
+                text-align: left
+            }
+            $time:1;
+            @for $num from 1 to 5{
+            .footer-#{$num}{
+            animation: fadeInLeft #{$time}s;
+            }
+            $time:$time+1;
+            }
+            .contact-us{
+                h2{
+                    @include mTextTitleFooter();
+                    @extend .mb-4;
+                }
+                .contact-info{
+                    .contact-item{
+                        @include mText($text-small,$fw-normal,$text-primary-100);
+                        i{
+                            @extend .me-1, .mb-2;
+                        }
+                        span{
+                            
+
+                        }
+                    }
+                    .contact-social{
+                        
+                        a{
+                            text-decoration: none;
+                            @include mTextHover($text-small,$fw-semi,$text-primary-100,$text-dark);
+                            i{
+
+                            }
+                        }
+                    }
+                }
+            }
+            .quick-about{
+                h2{
+                    @extend .mb-4;
+                    @include mTextTitleFooter();
+                }
+                .quick-about-info{
+                    ul{
+                        margin: 0;
+                        padding: 0;
+                        li{
+                            list-style: none;
+                            @extend .mb-2;
+                            a{
+                                position: relative;
+                                @include mTextHover($text-small,$fw-semi,$text-primary-100,#DCD1F0);
+                                text-decoration: none;
+                                &::after{
+                                    position: absolute;
+                                    content: "";
+                                    width: 70px;
+                                    height: 1px;
+                                    background-color: rgba(0,0,0,0.2);
+                                    bottom: -15px;
+                                    left: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .newsletter{ 
+                h2{
+                    @include mTextTitleFooter();
+                    @extend .mb-5;
+                }
+                .your-email{
+                    @extend .my-3;
+                    input{
+                        &::placeholder{
+                            text-align: center;
+                            
+                            color: $text-primary-100;
+                        }
+                        outline: none;
+                        padding: 10px 30px;
+                        width: 100%;
+                        background: transparent;
+                        border: 1px solid rgba(255,255,255,0.2);
+                        border-radius: 50px;
+                        transition: all 0.5s;
+                        @include mInputHover(rgba(255,255,255,0.8))
+                    }
+                }
+                .btn-subcribe{
+                    .subcribe{
+                        width: 100%;
+                        @include mButtonNew($text-small,$fw-semi,$text-primary-200,10px 50px,1px solid transparent,50px,$text-primary-100);
+                        span{
+                            letter-spacing: 2px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes fadeInLeft {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+//NavBar
+.none{
+    display: none;
+}
+.changeBar {
+    transform: translateX(-150%);
+  }
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 4; /* Ensure the header stays on top of other elements */
+    background-color: $bg-primary-100;
+    box-shadow: 0px 7px 11px -4px rgba(0,0,0,0.1);
+}
